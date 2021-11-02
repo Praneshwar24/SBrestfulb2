@@ -28,4 +28,22 @@ public class StudentService {
 		return students;
 	}
 
+	public Student findStudent(int id) {
+
+		Student student=  students.stream().
+				filter(s -> s.getId() == id )
+				.findFirst()
+				.get();
+		return student;
+	}
+
+
+
+
+
+
+
+
+
+
 }
