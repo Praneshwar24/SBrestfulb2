@@ -3,6 +3,7 @@ package dxc.b2.rest;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 /**
@@ -16,6 +17,9 @@ public class StudentService {
 
 	List<Student> students = new ArrayList<>();
 
+	@Autowired
+	StudentRepository studentRepository;
+
 	public void createStudents() {
 		students.add(new Student(1, "Naruto", 1, 11));
 		students.add(new Student(2, "Sasuke", 2, 22));
@@ -25,7 +29,7 @@ public class StudentService {
 	}
 	public List<Student> getStudents(){
 		createStudents();
-		return students;
+		return studentRepository.findAll();
 	}
 
 	public Student findStudent(int id) {
@@ -37,17 +41,8 @@ public class StudentService {
 		return student;
 	}
 	public void addStudent(Student student) {
-		students.add(student);
+
+		studentRepository.save(student);
 		System.out.println("Added a student "+ student.getName());
 	}
-
-
-
-
-
-
-
-
-
-
 }

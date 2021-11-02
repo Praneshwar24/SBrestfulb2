@@ -1,16 +1,35 @@
 package dxc.b2.rest;
 
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.Table;
+
+
+
 /**
  * pojo class or bean or a value object or a model class
  * @author Lenovo
  *
+ * ORM - object relation mapping -- java object into a table[relation]
  */
 
+@Entity
+@Table(name = "students")
 public class Student {
+	@Id
+	@GeneratedValue(strategy = GenerationType.AUTO)
 	int id;
+	@Column
 	String name;
+	@Column
 	int sem;
+	@Column
 	int avg;
+
+	public Student() {}
 	public Student(int id, String name, int sem, int avg) {
 		super();
 		this.id = id;
